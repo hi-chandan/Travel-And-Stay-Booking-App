@@ -3,20 +3,26 @@
 import useDebounce from "@/lib/useDebounce";
 import React, { useContext, useEffect, useState } from "react";
 import "./globals.css";
-import { Context } from "./layout";
+import SearchBar from "@/components/SearchBar";
 
 const Page = () => {
-  const { theme } = useContext(Context);
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
   const [filter, setFilter] = useState(false);
+  const [buy, SetBuy] = useState("");
   const debouncingSearch = useDebounce(search, 1000);
   const debouncingCity = useDebounce(city, 1000);
-  console.log("This is in app theme", theme);
   const blurBackground = () => {
     setFilter((val) => !val);
   };
 
+  const buyFilter = () => {
+    SetBuy("Buy");
+  };
+  const RentFilter = () => {
+    SetBuy("Rent");
+  };
+  console.log("buy and Rent", buy);
   useEffect(() => {
     if (debouncingCity) {
       console.log("this is City ", debouncingCity);
@@ -36,7 +42,7 @@ const Page = () => {
           <div className="">
             <input
               type="text"
-              className="bg-background text-copy-secondary pl-14 border-2 border-border rounded-sm p-4 outline-none text-lg font-bold"
+              className="bg-background text-copy-secondary pl-14 border-2 border-border rounded-md p-4 outline-none text-lg font-bold"
               placeholder="Search By Name"
               name="search"
               onChange={(e) => setSearch(e.target.value)}
@@ -55,7 +61,7 @@ const Page = () => {
           <div className="max-sm:relative bottom-5">
             <input
               type="text"
-              className="bg-background text-copy-secondary pl-14 border-2 border-border rounded-sm outline-none text-lg font-bold p-4"
+              className="bg-background text-copy-secondary pl-14 border-2 border-border rounded-md  outline-none text-lg font-bold p-4"
               placeholder="Search By Name"
               name="search"
               onChange={(e) => setCity(e.target.value)}
@@ -68,38 +74,13 @@ const Page = () => {
               <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
             </svg>
           </div>
-          <div
-            className={` relative   max-sm:bottom-12 z-40 w-full sm:ml-2 border-2 text-white border-border bg-blue h-[63px] rounded-md bg-light font-bold text-xl
-
-            `}
-          >
-            <button
-              onClick={blurBackground}
-              className="w-28 p-4 font-bold  max-sm:w-full "
-            >
-              Filter
-            </button>
-            {filter && (
-              <div className="fixed h-2/3    bottom-0 left-0  bg-transparent p-4  rounded-md">
-                <input
-                  type="text"
-                  className="mb-2 p-2 w-full border-2 border-border"
-                  placeholder="Min Price"
-                />
-                <input
-                  type="text"
-                  className="mb-2 p-2 w-full border-2 border-border"
-                  placeholder="Max Price"
-                />
-                <button
-                  onClick={blurBackground}
-                  className="w-full p-2 bg-gray-700 text-white rounded-md"
-                >
-                  Submit
-                </button>
-              </div>
-            )}
-          </div>
+          <SearchBar
+            blurBackground={blurBackground}
+            filter={filter}
+            buy={buy}
+            buyFilter={buyFilter}
+            RentFilter={RentFilter}
+          />
         </div>
       </div>
     </section>

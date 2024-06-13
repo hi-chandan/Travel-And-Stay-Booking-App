@@ -5,7 +5,7 @@
 .light {
   --background: 250, 250, 240;
   --navbar: white;
-  --border: 160, 138, 138;
+  --border: 156, 163, 175;
   --card: 255, 255, 255;
   --light: 56, 159, 104;
 
@@ -59,6 +59,10 @@ body {
   background: rgba(var(--background));
   margin-top: 72px;
 }
+.slideBar {
+  animation: slider 1000ms ease-in-out forwards;
+  height: 0;
+}
 
 /* .filterSlider {
   animation: slider 1000ms forwards;
@@ -69,11 +73,8 @@ body {
   height: 0; /* Start with height 0 */
 /* overflow: hidden;
 } */
-
-/* @keyframes slider {
-  0% {
-    height: 0;
-  }
+@keyframes slider {
   100% {
-    height: 100vh; /* Full height */
-/* } */
+    height: 600px;
+  }
+}
