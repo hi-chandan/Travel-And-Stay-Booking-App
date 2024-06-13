@@ -8,9 +8,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const Navbar = ({ setDark, dark }) => {
+const Navbar = ({ setDark }) => {
   const { currentUser } = useContext(Context);
-
   const darkMode = () => {
     setDark("dark");
   };
@@ -21,7 +20,7 @@ const Navbar = ({ setDark, dark }) => {
 
   return (
     <section
-      className={`fixed top-0 right-0 left-0 z-50 p-4 shadow-md
+      className={`fixed top-0 right-0 left-0 z-50 p-4 shadow-md bg-navbar
       `}
     >
       <div className="   flex  justify-center ">
@@ -59,38 +58,37 @@ const Navbar = ({ setDark, dark }) => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <img
-                  src={dark === "dark" ? "/menu3.svg" : "menu.svg"}
-                  alt="Menu Icon"
-                  className="w-8 mr-8 sm:hidden  cursor-pointer "
-                />
+                <svg
+                  className={` fill-light w-8`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 50 50"
+                  width="50px"
+                  height="50px"
+                >
+                  <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z" />
+                </svg>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className={`bg-background text-dark-text`}>
-                <DropdownMenuItem>
-                  <Link href="/" className="text-lg font-semibold p-2 block">
+              <DropdownMenuContent className="bg-background  text-dark-text">
+                <DropdownMenuItem asChild className="text-lg font-semibold p-4">
+                  <Link href="/" className=" ">
                     Home
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link
-                    href="/about"
-                    className="text-lg font-semibold p-2 block"
-                  >
+                <DropdownMenuItem asChild className="text-lg font-semibold p-4">
+                  <Link href="/about" className="">
                     About
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link
-                    href="/contact"
-                    className="text-lg font-semibold p-2 block"
-                  >
+                <DropdownMenuItem asChild className="text-lg font-semibold p-4">
+                  <Link href="/contact" className=" ">
                     Contact
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/" className="text-lg font-semibold p-2 block">
+                <DropdownMenuItem asChild className="text-lg font-semibold p-4">
+                  <Link href="/" className="">
                     Blog
                   </Link>
                 </DropdownMenuItem>

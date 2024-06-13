@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       colors: {
         background: "rgba(var(--background))",
+        light: "rgba(var(--light))",
+        navbar: "rgba(var(--navbar)",
         border: "rgba(var(--border))",
         card: "rgba(var(--card))",
         "copy-primary": "rgba(var(--copy-primary))",

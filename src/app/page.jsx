@@ -2,44 +2,48 @@
 
 import useDebounce from "@/lib/useDebounce";
 import React, { useContext, useEffect, useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import "./globals.css";
 import { Context } from "./layout";
 
 const Page = () => {
   const { theme } = useContext(Context);
-  const [search, setSearch] = useState();
-  const [city, setCity] = useState();
+  const [search, setSearch] = useState("");
+  const [city, setCity] = useState("");
+  const [filter, setFilter] = useState(false);
   const debouncingSearch = useDebounce(search, 1000);
+  const debouncingCity = useDebounce(city, 1000);
+  console.log("This is in app theme", theme);
+  const blurBackground = () => {
+    setFilter((val) => !val);
+  };
+
   useEffect(() => {
+    if (debouncingCity) {
+      console.log("this is City ", debouncingCity);
+    }
     if (debouncingSearch) {
       console.log("this is debouncing ", debouncingSearch);
     }
-  }, [debouncingSearch]);
+  }, [debouncingSearch, debouncingCity]);
 
   return (
-    <section className="text-dark-text flex pt-2 justify-center items-center ">
-      <div className=" flex justify-centerw-8/12  max-sm:w-full p-2">
-        <div className="  flex  ">
+    <section className=" text-dark-text flex pt-2 justify-center items-center">
+      {filter && (
+        <div className="absolute inset-0 backdrop-blur-md z-20 w-screen h-screen  "></div>
+      )}
+      <div className="relative  flex justify-center p-2">
+        <div className="sm:flex relative">
           <div className="">
             <input
               type="text"
-              className="  bg-background text-copy-secondary pl-14 border-2 border-border rounded-sm p-4 outline-none text-lg font-bold    "
+              className="bg-background text-copy-secondary pl-14 border-2 border-border rounded-sm p-4 outline-none text-lg font-bold"
               placeholder="Search By Name"
               name="search"
               onChange={(e) => setSearch(e.target.value)}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`w-6  relative bottom-10 left-4 ${
-                theme === "dark" ? "text-gray-500" : "text-green-600"
-              } `}
+              className="w-6 relative bottom-10 left-4 text-light"
               viewBox="0 0 512 512"
             >
               <path
@@ -48,42 +52,53 @@ const Page = () => {
               />
             </svg>
           </div>
-          <div className="">
+          <div className="max-sm:relative bottom-5">
             <input
               type="text"
-              className=" bg-background text-copy-secondary pl-14 border-2 border-border rounded-sm outline-none text-lg font-bold  p-4 "
+              className="bg-background text-copy-secondary pl-14 border-2 border-border rounded-sm outline-none text-lg font-bold p-4"
               placeholder="Search By Name"
               name="search"
               onChange={(e) => setCity(e.target.value)}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`w-6  relative bottom-12 left-4 ${
-                theme === "dark" ? "fill-gray-500" : "fill-green-600"
-              } `}
+              className={`w-6 relative bottom-12 left-4 fill-light`}
               viewBox="0 0 384 512"
             >
               <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
             </svg>
           </div>
           <div
-            className={`border-2 ml-2  text-white border-border bg-blue h-[63px] rounded-sm ${
-              theme === "dark" ? "bg-gray-800" : "bg-green-600"
-            }`}
+            className={` relative   max-sm:bottom-12 z-40 w-full sm:ml-2 border-2 text-white border-border bg-blue h-[63px] rounded-md bg-light font-bold text-xl
+
+            `}
           >
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <button className={`   w-28  p-4  font-bold `}>Filter</button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="font-bold text-copy-secondary">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <button
+              onClick={blurBackground}
+              className="w-28 p-4 font-bold  max-sm:w-full "
+            >
+              Filter
+            </button>
+            {filter && (
+              <div className="fixed h-2/3    bottom-0 left-0  bg-transparent p-4  rounded-md">
+                <input
+                  type="text"
+                  className="mb-2 p-2 w-full border-2 border-border"
+                  placeholder="Min Price"
+                />
+                <input
+                  type="text"
+                  className="mb-2 p-2 w-full border-2 border-border"
+                  placeholder="Max Price"
+                />
+                <button
+                  onClick={blurBackground}
+                  className="w-full p-2 bg-gray-700 text-white rounded-md"
+                >
+                  Submit
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
