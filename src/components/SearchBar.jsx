@@ -2,7 +2,7 @@ import React from "react";
 const SearchBar = ({ blurBackground, buyFilter, RentFilter, filter, buy }) => {
   return (
     <div
-      className=" relative   max-sm:bottom-12 max-sm:w-full z-40  sm:ml-2 rounded-md border-2 text-white border-border bg-blue h-[63px] text-center w-28 bg-light font-bold text-xl
+      className=" relative    max-sm:bottom-12 max-sm:w-full z-40  sm:ml-2 rounded-md border-2 text-white border-border bg-blue h-[63px] text-center w-28 bg-light font-bold text-xl
 
             "
     >
@@ -13,10 +13,10 @@ const SearchBar = ({ blurBackground, buyFilter, RentFilter, filter, buy }) => {
         Filter
       </button>
       {filter && (
-        <div className="slideBar  max-sm:fixed h-3/5  w-full sm:w-96   flex flex-col item-center  bottom-0 left-0 bg-transparent  max-sm:p-10  rounded-md">
+        <div className="slideBar bg-navbar  max-sm:fixed h-3/5  w-full sm:w-96  border-2 border-border flex flex-col item-center  bottom-0 left-0   max-sm:p-10  rounded-md">
           <div className="flex  justify-center p-4  gap-6">
             <p
-              className={`p-4 w-28 rounded-md border-2 border-border ${
+              className={`p-4 w-28 text-copy-primary rounded-md border-2 border-border ${
                 buy === "Buy" ? "bg-light" : ""
               } `}
               onClick={buyFilter}
@@ -24,7 +24,7 @@ const SearchBar = ({ blurBackground, buyFilter, RentFilter, filter, buy }) => {
               Buy
             </p>
             <p
-              className={`p-4 w-28 rounded-md border-2 border-border ${
+              className={`p-4 w-28 text-copy-primary rounded-md border-2 border-border ${
                 buy === "Rent" ? "bg-light" : ""
               } `}
               onClick={RentFilter}

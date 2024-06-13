@@ -37,7 +37,7 @@ const Page = () => {
   };
 
   return (
-    <div className=" h-screen max-sm:flex-col  w-full flex sm:ml-20 justify-center items-center gap-10    ">
+    <div className=" p-20 max-sm:flex-col  w-full flex sm:ml-20 justify-center items-center gap-10    ">
       <div className="flex flex-col max-sm:w-full  w-1/4  rounded-md justify-center items-center p-4 bg-card text-copy-secondary  sm:mb-20  border  border-border  ">
         <h1 className="text-lg font-bold">Welcome Back </h1>
         <form

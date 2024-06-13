@@ -33,10 +33,7 @@ const Page = () => {
   }, [debouncingSearch, debouncingCity]);
 
   return (
-    <section className=" text-dark-text flex pt-2 justify-center items-center">
-      {filter && (
-        <div className="absolute inset-0 backdrop-blur-md z-20 w-screen h-screen  "></div>
-      )}
+    <section className=" text-dark-text flex-col pt-2 justify-center items-center ">
       <div className="relative  flex justify-center p-2">
         <div className="sm:flex relative">
           <div className="">
@@ -81,6 +78,121 @@ const Page = () => {
             buyFilter={buyFilter}
             RentFilter={RentFilter}
           />
+
+          <div className="  ">
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+            <p>workging</p>
+          </div>
         </div>
       </div>
     </section>
