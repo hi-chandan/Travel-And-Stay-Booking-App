@@ -1,6 +1,6 @@
 import React from "react";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="relative top-10 mx-auto w-full max-w-sm border-2 border-border rounded-lg bg-card p-8">
       <h4 className="mb-4 mt-2 w-full text-3xl font-bold text-copy-primary">
@@ -135,4 +135,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

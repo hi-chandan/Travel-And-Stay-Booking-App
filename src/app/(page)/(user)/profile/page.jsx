@@ -1,12 +1,11 @@
 "use client";
 
-import api from "@/lib/request";
+import Api from "@/lib/request";
 import React, { useEffect } from "react";
 
-const page = () => {
+const Page = () => {
   useEffect(() => {
-    api
-      .get("/profile")
+    Api.get("/profile")
       .then((val) => console.log(val))
       .catch((err) => console.log(err));
   }, []);
@@ -14,4 +13,4 @@ const page = () => {
   return <div>This is user profile</div>;
 };
 
-export default page;
+export default Page;

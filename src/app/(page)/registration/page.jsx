@@ -1,9 +1,9 @@
 "use client";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import api from "@/lib/request";
+import Api from "@/lib/request";
 import { Context } from "../../layout";
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [validation, setValidation] = useState();
   const [userError, setUserError] = useState();
@@ -22,7 +22,7 @@ const page = () => {
     console.log(email);
     console.log(password);
     try {
-      const res = await api.post("/login", {
+      const res = await Api.post("/login", {
         name,
         email,
         password,
@@ -75,4 +75,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

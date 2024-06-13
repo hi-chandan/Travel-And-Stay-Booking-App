@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Context } from "./layout";
 
-const page = () => {
+const Page = () => {
   const { theme } = useContext(Context);
   const [search, setSearch] = useState();
   const [city, setCity] = useState();
@@ -91,4 +91,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const api = axios.create({
+const Api = axios.create({
   baseURL: "http://localhost:3000/api",
   withCredentials: true,
 });
 
-api.interceptors.response.use(
+Api.interceptors.response.use(
   (config) => {
     return config;
   },
@@ -34,4 +34,4 @@ api.interceptors.response.use(
   },
 );
 
-export default api;
+export default Api;
