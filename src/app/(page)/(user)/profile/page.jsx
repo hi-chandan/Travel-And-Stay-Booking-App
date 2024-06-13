@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "@/app/component/request";
+import api from "@/lib/request";
 import React, { useEffect } from "react";
 
 const page = () => {
