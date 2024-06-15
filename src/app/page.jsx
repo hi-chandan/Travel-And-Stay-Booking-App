@@ -4,25 +4,22 @@ import useDebounce from "@/lib/useDebounce";
 import React, { useContext, useEffect, useState } from "react";
 import "./globals.css";
 import SearchBar from "@/components/SearchBar";
+import { allProduct } from "@/service/Post";
+import Card from "@/components/Posts";
 
 const Page = () => {
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
   const [filter, setFilter] = useState(false);
   const [buy, SetBuy] = useState("");
+  const [min, setMin] = useState("");
+  const [max, setMax] = useState("");
   const debouncingSearch = useDebounce(search, 1000);
   const debouncingCity = useDebounce(city, 1000);
   const blurBackground = () => {
     setFilter((val) => !val);
   };
 
-  const buyFilter = () => {
-    SetBuy("Buy");
-  };
-  const RentFilter = () => {
-    SetBuy("Rent");
-  };
-  console.log("buy and Rent", buy);
   useEffect(() => {
     if (debouncingCity) {
       console.log("this is City ", debouncingCity);
@@ -34,7 +31,7 @@ const Page = () => {
 
   return (
     <section className=" text-dark-text flex-col pt-2 justify-center items-center ">
-      <div className="relative  flex justify-center p-2">
+      <div className="relative  flex flex-col items-center justify-center p-2">
         <div className="sm:flex relative">
           <div className="">
             <input
@@ -74,126 +71,12 @@ const Page = () => {
           <SearchBar
             blurBackground={blurBackground}
             filter={filter}
-            buy={buy}
-            buyFilter={buyFilter}
-            RentFilter={RentFilter}
+            SetBuy={SetBuy}
+            setMin={setMin}
+            setMax={setMax}
           />
-
-          <div className="  ">
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-            <p>workging</p>
-          </div>
         </div>
+        <Card search={search} city={city} buy={buy} min={min} max={max} />
       </div>
     </section>
   );
