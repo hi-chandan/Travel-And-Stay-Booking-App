@@ -4,7 +4,6 @@ import useDebounce from "@/lib/useDebounce";
 import React, { useContext, useEffect, useState } from "react";
 import "./globals.css";
 import SearchBar from "@/components/SearchBar";
-import { allProduct } from "@/service/Post";
 import Card from "@/components/Posts";
 
 const Page = () => {

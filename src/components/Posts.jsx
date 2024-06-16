@@ -1,10 +1,10 @@
 import Api from "@/lib/request";
 import React, { useEffect, useState } from "react";
-import { getPosts } from "@/service/Post";
+import { GetPosts } from "@/service/Post";
 import Card from "./Card";
 
 const Posts = ({ search, city, buy, min, max }) => {
-  const { posts, error, isLoading } = getPosts(search, city, buy, min, max);
+  const { posts, error, isLoading } = GetPosts(search, city, buy, min, max);
   console.log("this is post", posts);
   if (isLoading) return <dev>Loading...</dev>;
   if (error) return <dev>Post Not Find</dev>;
