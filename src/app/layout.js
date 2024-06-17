@@ -1,7 +1,7 @@
 "use client";
+import * as React from "react";
 import "./globals.css";
 import { createContext, useEffect, useState } from "react";
-import Link from "next/link";
 
 import Navbar from "@/components/Navbar";
 export const Context = createContext();

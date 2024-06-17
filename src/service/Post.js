@@ -15,3 +15,12 @@ export const GetPosts = (search, city, buy, min, max) => {
     error: error,
   };
 };
+
+export const GetPostDetails = (id) => {
+  const { data, error } = useSWR(`/post/${id}`, fetcher);
+  return {
+    post: data,
+    isLoading: !error && !data,
+    error: error,
+  };
+};

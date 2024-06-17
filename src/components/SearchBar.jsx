@@ -24,12 +24,15 @@ const SearchBar = ({ blurBackground, filter, SetBuy, setMin, setMax }) => {
   };
 
   return (
-    <div className="relative max-sm:bottom-12 max-sm:w-full z-40 sm:ml-2 rounded-md border-2 text-white border-border bg-blue h-[63px] text-center w-28 bg-light font-bold text-xl">
-      <button onClick={blurBackground} className="p-4 font-bold max-sm:w-full">
+    <div className="relative  max-sm:bottom-12 max-sm:w-full sm:ml-2 rounded-md border-2 text-white border-border bg-blue h-[63px] text-center w-28 bg-light font-bold text-xl">
+      <button
+        onClick={blurBackground}
+        className=" p-4 font-bold max-sm:w-full "
+      >
         Filter
       </button>
       {filter && (
-        <div className="slideBar p-7 bg-navbar max-sm:fixed w-full sm:w-96 border-2 border-border flex flex-col items-center bottom-0 left-0 max-sm:p-10 rounded-md">
+        <div className="slideBar p-7  bg-navbar max-sm:fixed w-full sm:w-96 border-2 border-border flex flex-col items-center max-sm:bottom-0  max-sm:left-0 max-sm:p-10 rounded-md sm:relative sm:right-20 ">
           <div className=" text-right w-full">
             <button
               onClick={handleReset}
