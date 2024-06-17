@@ -27,8 +27,10 @@ const Navbar = ({ setDark }) => {
         <nav className="flex max-sm:w-full justify-between items-center w-8/12 ">
           <div className="flex  items-center">
             <span className="md:ml-6 text-2xl font-bold hover:scale-125 transition-transform">
-              <span className="text-red-600">Ck</span>
-              <span className="text-green-600 pr-3">ESTATE</span>
+              <Link href={"/"}>
+                <span className="text-red-600">Ck</span>
+                <span className="text-green-600 pr-3">ESTATE</span>
+              </Link>
             </span>
             <div className="hidden sm:flex items-center ml-6 space-x-8 mt-3 text-lg font-semibold text-copy-secondary">
               <Link href="/">Home</Link>
@@ -37,7 +39,7 @@ const Navbar = ({ setDark }) => {
               <Link href="/contact">Contact</Link>
             </div>
           </div>
-          <div className="flex  items-center gap-3  text-copy-secondary font-bold">
+          <div className="flex  items-center gap-3 md:gap-6  text-copy-secondary font-bold">
             <Link href="/login">Login</Link>
             <DropdownMenu>
               <DropdownMenuTrigger className="text-copy-secondary   cursor-pointer">
