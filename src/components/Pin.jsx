@@ -10,7 +10,7 @@ const Pin = ({ item }) => {
         <div className="popupContainer">
           <img
             className="w-[64px] h-[80] object-contain"
-            src={item.image[0]?.url}
+            src={item.image[0].url}
             alt=""
           />
           <div className="textContainer">

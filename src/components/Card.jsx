@@ -12,11 +12,13 @@ const Card = ({ post }) => {
           <div className="border-border   border-b-2 flex justify-center items-center max-sm:flex-col gap-2 p-2  ">
             <div className="p-2">
               <Image
-                className="rounded-md object-contain"
+                className="rounded-md object-contains"
                 width={400}
                 height={300}
+                layout="intrinsic"
+                decoding="async"
                 alt="Image loading problem."
-                src={post.image[0]?.url}
+                src={post.image[0].url}
               ></Image>
             </div>
             <div className=" max-sm:flex max-sm:flex-col justify-center items-center  max-sm:text-center w-[25rem] pt-4 sm:space-y-6 max-sm:space-x-3">
