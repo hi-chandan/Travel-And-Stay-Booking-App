@@ -74,12 +74,13 @@ body {
   }
 }
 
-/* .filterSlider {
-  animation: slider 1000ms forwards;
-  background-color: blue;
-  position: absolute;
-  bottom: 0;
-  width: 100vh;
-  height: 0; /* Start with height 0 */
-/* overflow: hidden;
-} */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: #888;
+}
+::-webkit-scrollbar-thumb {
+  background: green;
+}

@@ -16,6 +16,7 @@ const Pin = dynamic(() => import("./Pin"), { ssr: false });
 const iconUrl = "/location.svg";
 
 const Map = ({ items }) => {
+  console.log("This is items", items);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const L = require("leaflet");
@@ -29,10 +30,19 @@ const Map = ({ items }) => {
       L.Marker.prototype.options.icon = DefaultIcon;
     }
   }, []);
+  if (!Array.isArray(items)) {
+    if (items === undefined || items === null) {
+      items = [];
+    } else {
+      console.log("This is elses [items]");
+      items = [items]; // if not array so convert into an array
+    }
+  }
 
   const val = items?.length;
+  console.log("This is value length ", val);
   return (
-    <div className="w-full  h-full ">
+    <div className="w-full  h-full  ">
       <MapContainer
         center={
           val === 1

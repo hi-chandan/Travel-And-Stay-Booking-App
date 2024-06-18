@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import Api from "@/lib/request";
 
-const fetcher = (url) => Api.get(url).then((res) => res.data);
+export const fetcher = (url) => Api.get(url).then((res) => res.data);
 
 export const GetPosts = (search, city, buy, min, max) => {
   const { data, error } = useSWR(
@@ -19,7 +19,7 @@ export const GetPosts = (search, city, buy, min, max) => {
 export const GetPostDetails = (id) => {
   const { data, error } = useSWR(`/post/${id}`, fetcher);
   return {
-    post: data,
+    data: data,
     isLoading: !error && !data,
     error: error,
   };

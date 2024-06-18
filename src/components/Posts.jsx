@@ -13,16 +13,21 @@ const Posts = ({ search, city, buy, min, max }) => {
         <Loading />
       </div>
     );
-  if (error) return <div>Post Not Find</div>;
+  if (error)
+    return (
+      <div className="flex flex-col sm:h-80 max-sm:h-70 w-full justify-center items-center text-lg text-red-700">
+        Can't Find Post
+      </div>
+    );
 
   return (
-    <section className="flex max-sm:relative bottom-10 sm:pt-[5.3rem]">
-      <div className="">
+    <section className="flex  overflow-hidden bottom-10   sm:pt-[5.3rem]">
+      <div className=" md:overflow-auto  md:h-[calc(100vh-9rem)]  ">
         {posts.data.map((val, index) => (
           <Card post={val} key={index} />
         ))}
       </div>
-      <div className="max-xl:hidden fixed rounded-md overflow-hidden  right-0 border-2 border-border w-[35rem] h-[35.5rem]">
+      <div className="max-xl:hidden fixed rounded-md overflow-hidden  right-0 border-2 border-border w-[35rem] h-[calc(100vh-9rem)]">
         <Map items={posts?.data} />
       </div>
     </section>

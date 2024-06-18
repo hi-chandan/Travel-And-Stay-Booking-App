@@ -5,7 +5,7 @@ import Api from "@/lib/request";
 import { Context } from "../../layout";
 const Page = () => {
   const router = useRouter();
-  const [validation, setValidation] = useState();
+  const [validation, setValidation] = useState("");
   const [userError, setUserError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const { updateUser } = useContext(Context);
@@ -22,7 +22,7 @@ const Page = () => {
     console.log(email);
     console.log(password);
     try {
-      const res = await Api.post("/login", {
+      const res = await Api.post("/register", {
         name,
         email,
         password,
@@ -30,12 +30,12 @@ const Page = () => {
       updateUser(res.data);
       router.push("/");
     } catch (err) {
-      console.log("This is error", err);
-      setValidation(err.response.data.error);
+      setValidation(err.response.data.errorObj);
     } finally {
       setIsLoading(false);
     }
   };
+  console.log("This is validation", validation);
 
   return (
     <div className=" pt-6 max-sm:flex-col w-full flex sm:ml-20 justify-center items-center gap-10    ">
@@ -48,7 +48,7 @@ const Page = () => {
           <input
             type="text"
             className="m-2 p-2 rounded-md w-full text-black font-semibold border-border border-2 outline-none"
-            placeholder="Enter you email"
+            placeholder="Enter you name"
             name="name"
           />
           <input
@@ -67,6 +67,13 @@ const Page = () => {
             Registration
           </button>
         </form>
+        <p className="text-red-600 text-base">
+          {validation && validation.email}
+        </p>
+        <p className="text-red-600 text-base">
+          {" "}
+          {validation && validation.password}
+        </p>
       </div>
       <div className=" mb-10 flex justify-center items-center ">
         <img src="/bg.png" alt="" className="  w-8/12" />

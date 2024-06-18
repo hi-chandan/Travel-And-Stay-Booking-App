@@ -4,7 +4,7 @@ import useDebounce from "@/lib/useDebounce";
 import React, { useEffect, useState } from "react";
 import "./globals.css";
 import SearchBar from "@/components/SearchBar";
-import Card from "@/components/Posts";
+import Posts from "@/components/Posts";
 
 const Page = () => {
   const [search, setSearch] = useState("");
@@ -13,8 +13,8 @@ const Page = () => {
   const [buy, SetBuy] = useState("");
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
-  const debouncingSearch = useDebounce(search, 1000);
-  const debouncingCity = useDebounce(city, 1000);
+  const debouncingSearch = useDebounce(search, 500);
+  const debouncingCity = useDebounce(city, 500);
   const blurBackground = () => {
     setFilter((val) => !val);
   };
@@ -80,7 +80,13 @@ const Page = () => {
       </div>
       <div className=" ">
         {/* Added margin-top to ensure content is visible below the fixed header */}
-        <Card search={search} city={city} buy={buy} min={min} max={max} />
+        <Posts
+          search={debouncingSearch}
+          city={debouncingCity}
+          buy={buy}
+          min={min}
+          max={max}
+        />
       </div>
     </section>
   );

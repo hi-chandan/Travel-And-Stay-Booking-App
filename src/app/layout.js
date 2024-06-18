@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: initialThemeScript }} />
       </head>
-      <body>
+      <body className="">
         <Context.Provider value={{ currentUser, updateUser }}>
           <nav className="">
             <Navbar setDark={setTheme} dark={theme} />

@@ -2,14 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 const Card = ({ post }) => {
+  console.log("this Card post", post);
+  console.log("This is Card Component");
   return (
-    <section className="  flex w-screen     sm:pl-20   ">
-      <div className="flex max-sm:pl-9   max-sm:flex-col max-sm:w-full w-11/12   ">
+    <section className=" justify-center  sm:pl-20   ">
+      <div className="   max-sm:flex-col max-sm:w-full  w-11/12    ">
         <Link
           className="hover:border-border hover:border-2 m-1 rounded-md "
           href={`/postdetails/${post.id}`}
         >
-          <div className="border-border   border-b-2 flex justify-center items-center max-sm:flex-col gap-2 p-2  ">
+          <div className="border-border   border-b-2 flex justify-center items-center max-sm:flex-col gap-2 max-md:pr-2 p-2  ">
             <div className="p-2">
               <Image
                 className="rounded-md object-contains"
@@ -37,9 +39,7 @@ const Card = ({ post }) => {
                   {post.address}
                 </h1>
               </div>
-              <h1 className="bg-light text-white w-20  text-center p-2 rounded-lg font-bold text-xl max-sm:w-8/12    ">
-                ₹{post.price}
-              </h1>
+
               <div className=" flex gap-8 pt-4 font-semibold font-mono ">
                 <h1 className=" flex gap-2 border-2 border-border p-1 rounded-md">
                   <svg
