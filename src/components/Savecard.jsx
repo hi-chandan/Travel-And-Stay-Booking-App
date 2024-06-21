@@ -2,34 +2,21 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { DeleteUserPostMutation, SavePost } from "@/service/auth";
+import { DeleteSavePost, SavePost } from "@/service/auth";
 import { useMutation } from "@tanstack/react-query";
 import { Context } from "@/app/layout";
-import { mutate } from "swr";
 import queryClient from "@/lib/queryprovider";
-const Card = ({ post }) => {
+const Savecard = ({ post, saveId }) => {
   const { currentUser } = useContext(Context);
-  const saveMutation = useMutation({
-    mutationFn: async (id) => {
-      const data = await SavePost(id);
-      return data;
-    },
-    onSuccess: (data) => {
-      toast.success("Post is Saved");
-      queryClient.invalidateQueries(["saves"]);
-    },
-    onError: (error) => {
-      toast.error("Post already Saved");
-    },
-  });
+  console.log("This is saveId", saveId);
   const deleteMutation = useMutation({
-    mutationFn: async (id) => {
-      const data = await DeleteUserPostMutation(id);
+    mutationFn: async (saveId) => {
+      const data = await DeleteSavePost(saveId);
       return data;
     },
     onSuccess: (data) => {
       toast.success("Post is Delete");
-      queryClient.invalidateQueries(["userposts"]);
+      queryClient.invalidateQueries(["saves"]);
     },
     onError: (error) => {
       toast.error("Post already Deleted");
@@ -39,7 +26,7 @@ const Card = ({ post }) => {
     saveMutation.mutate(post.id);
   };
   const DeleteUserPost = () => {
-    deleteMutation.mutate(post.id);
+    deleteMutation.mutate(saveId);
   };
   return (
     <section className=" justify-center  sm:pl-20   ">
@@ -107,7 +94,7 @@ const Card = ({ post }) => {
             </div>
           </div>
           <div className="pt-6  space-y-6">
-            <button className=" " onClick={SavePostId}>
+            {/* <button className=" " onClick={SavePostId}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-4 fill-light "
@@ -115,20 +102,16 @@ const Card = ({ post }) => {
               >
                 <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
               </svg>
+            </button> */}
+            <button className="  " onClick={DeleteUserPost}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 fill-light"
+                viewBox="0 0 448 512"
+              >
+                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+              </svg>
             </button>
-            {currentUser?.data.id === post.userId ? (
-              <button className="  " onClick={DeleteUserPost}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 fill-light"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                </svg>
-              </button>
-            ) : (
-              ""
-            )}
           </div>
         </div>
       </div>
@@ -137,4 +120,4 @@ const Card = ({ post }) => {
   );
 };
 
-export default Card;
+export default Savecard;

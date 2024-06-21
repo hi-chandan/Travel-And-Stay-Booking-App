@@ -1,28 +1,42 @@
 "use client";
 
 import Api from "@/lib/request";
-import { Profile, UserPost as fetchUserPost } from "@/service/auth";
+import {
+  Profile,
+  UserPost as fetchUserPost,
+  SaveLists as fetchSaveLists,
+  GetApi,
+} from "@/service/auth";
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Loading from "@/components/Loading";
+import Link from "next/link";
+import Savecard from "@/components/Savecard";
 import Card from "@/components/Card";
+import { useQuery } from "@tanstack/react-query";
+
+
 
 const Page = () => {
-  const { data, error, isLoading } = Profile();
-  const { UserPost, userisLoading, usererror } = fetchUserPost();
-  if (isLoading)
+  const { data, isPending, error } = GetApi("profile");
+  const {
+    data: UserPost,
+    isPending: UserSaveLoading,
+    isError,
+    error: usererror,
+  } = GetApi("userposts");
+  console.log("This si user post error", isError);
+  const { data: SaveLists, error: SaveError } = GetApi("saves");
+  if (isPending)
     return (
       <dev className="text-copy-secondary  flex justify-center items-center p-10">
         <Loading />
       </dev>
     );
-  if (error) return <dev>Profile not found</dev>;
-  if (userisLoading) return <dev>Loading...</dev>;
-  if (usererror) return <dev>No post yet</dev>;
 
   return (
     <section className="p-10 text-copy-secondary overflow-y-scroll flex justify-center items-center ">
-      <div className="w-8/12 space-y-3 ">
+      <div className="w-8/12 max-md:w-full space-y-3 ">
         <h1 className="text-3xl text-light font-bold">
           Welcome {data.data.name}
         </h1>
@@ -52,10 +66,28 @@ const Page = () => {
           <button className="bg-light  p-2 rounded-md">Logout</button>
         </div>
         <div className=" pt-10">
-          <p className="text-2xl font-bold ">Listed Post</p>
+          <div className=" flex w-8/12 justify-between">
+            <p className="text-2xl font-bold text-light  ">Listed Post</p>
+            <Link href={"/createpost"}>
+              <button className="bg-light p-2 text-lg font-bold rounded-md">
+                Create New Post
+              </button>
+            </Link>
+          </div>
           <div className=" ">
+            {UserSaveLoading ? <Loading /> : ""}
             {UserPost?.data.map((val, index) => (
               <Card post={val} key={index} />
+            ))}
+          </div>
+        </div>
+        <div className=" pt-10">
+          <p className="text-2xl font-bold text-light ">Save List</p>
+          <div className=" p-8 text-lg font-semibold font-mono">
+            {SaveError && SaveError?.response.data.error[0].message}
+
+            {SaveLists?.data.map((val, index) => (
+              <Savecard post={val.post} saveId={val.id} key={index} />
             ))}
           </div>
         </div>

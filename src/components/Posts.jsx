@@ -23,7 +23,7 @@ const Posts = ({ search, city, buy, min, max }) => {
   return (
     <section className="flex  overflow-hidden bottom-10   sm:pt-[5.3rem]">
       <div className=" md:overflow-auto  md:h-[calc(100vh-9rem)]  ">
-        {posts.data.map((val, index) => (
+        {posts?.data.map((val, index) => (
           <Card post={val} key={index} />
         ))}
       </div>

@@ -1,35 +1,39 @@
 "use client";
-import { useContext, useState, useEffect } from "react";
-import { Context } from "../../layout";
+
+import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { getLogin } from "@/service/auth";
+import { Context } from "../../layout";
+import Loading from "@/components/Loading";
 
 const Page = () => {
   const router = useRouter();
   const { updateUser } = useContext(Context);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const mutation = useMutation({
+    mutationFn: async ({ email, password }) => {
+      const data = await getLogin(email, password);
+      return data;
+    },
+    onSuccess: (data) => {
+      updateUser(data);
+      router.push("/");
+    },
+    onError: (error) => {
+      console.error("Login error:", error);
+    },
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
     const formData = new FormData(e.target);
     const email = formData.get("email");
     const password = formData.get("password");
 
-    try {
-      const data = await getLogin(email, password);
-      updateUser(data);
-      router.push("/");
-    } catch (error) {
-      setError(error.response.data.error[0].message);
-    }
+    mutation.mutate({ email, password });
   };
-
-  useEffect(() => {
-    handleSubmit();
-  }, [handleSubmit]);
 
   return (
     <div className="p-6 max-sm:flex-col w-full flex sm:ml-20 justify-center items-center gap-10">
@@ -56,13 +60,18 @@ const Page = () => {
           <button
             type="submit"
             className="bg-dark hover:bg-dark-active transition-colors text-dark-text mt-4 w-2/3 rounded-md p-2 font-semibold"
-            disabled={isSubmitting}
+            disabled={mutation.isPending}
           >
-            {isSubmitting ? "Loading..." : "Login"}
+            {mutation.isPending ? (
+              <Loading value={"Loading"} width={"w-6"} />
+            ) : (
+              "Login"
+            )}
           </button>
-          {error && (
+          {mutation.error && (
             <p className="text-red-500 mt-2">
-              {error || "Login failed. Please try again."}
+              {mutation.error.response?.data?.error[0]?.message ||
+                "Login failed. Please try again."}
             </p>
           )}
         </form>
