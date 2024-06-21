@@ -34,7 +34,6 @@ const Navbar = ({ setDark }) => {
             </span>
             <div className="hidden sm:flex items-center ml-6 space-x-8 mt-3 text-lg font-semibold text-copy-secondary">
               <Link href="/">Home</Link>
-              <Link href="/list">List</Link>
               <Link href="/about">About</Link>
               <Link href="/contact">Contact</Link>
             </div>
