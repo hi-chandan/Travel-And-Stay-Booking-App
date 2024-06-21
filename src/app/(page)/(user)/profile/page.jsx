@@ -14,20 +14,36 @@ import Link from "next/link";
 import Savecard from "@/components/Savecard";
 import Card from "@/components/Card";
 import { useQuery } from "@tanstack/react-query";
-
-
-
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 const Page = () => {
+  const router = useRouter();
   const { data, isPending, error } = GetApi("profile");
   const {
     data: UserPost,
-    isPending: UserSaveLoading,
+    isPending: UserPostLoading,
     isError,
     error: usererror,
   } = GetApi("userposts");
   console.log("This si user post error", isError);
-  const { data: SaveLists, error: SaveError } = GetApi("saves");
-  if (isPending)
+
+  const {
+    data: SaveLists,
+    isPending: savePending,
+    error: SaveError,
+  } = GetApi("saves");
+
+  const LogOut = async () => {
+    try {
+      await Api.get("/logout");
+      router.push("/login");
+    } catch (error) {
+      toast.error("Logout fail");
+    }
+  };
+  if (error) return <dev>profile error</dev>;
+  if (usererror) return <dev>userposts error</dev>;
+  if (isPending && UserPostLoading && savePending)
     return (
       <dev className="text-copy-secondary  flex justify-center items-center p-10">
         <Loading />
@@ -63,7 +79,9 @@ const Page = () => {
           <p>{data.data.email}</p>
         </div>
         <div className="flex gap-4 font-bold  text-lg">
-          <button className="bg-light  p-2 rounded-md">Logout</button>
+          <button className="bg-light  p-2 rounded-md" onClick={LogOut}>
+            Logout
+          </button>
         </div>
         <div className=" pt-10">
           <div className=" flex w-8/12 justify-between">
@@ -75,7 +93,7 @@ const Page = () => {
             </Link>
           </div>
           <div className=" ">
-            {UserSaveLoading ? <Loading /> : ""}
+            {UserPostLoading ? <Loading /> : ""}
             {UserPost?.data.map((val, index) => (
               <Card post={val} key={index} />
             ))}
